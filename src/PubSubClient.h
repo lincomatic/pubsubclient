@@ -178,6 +178,13 @@ public:
    boolean connected();
    int state();
 
+   uint16_t getPacketOverheadSize(const char *topic) { return MQTT_MAX_HEADER_SIZE + 2+strnlen(topic, this->bufferSize); } 
+   uint16_t getMaxPayloadSize(const char *topic) {
+     return getBufferSize()-getPacketOverheadSize(topic);
+   }
+   boolean setMaxPublishPayloadSize(const char *topic,uint16_t payloadsize);
+  // restore default buffer size
+   boolean resetBufferSize() { return setBufferSize(MQTT_MAX_PACKET_SIZE); }
 };
 
 

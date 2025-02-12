@@ -30,6 +30,10 @@ setStream	KEYWORD2
 setKeepAlive 	KEYWORD2
 setBufferSize 	KEYWORD2
 setSocketTimeout 	KEYWORD2
+getPacketOverheadSize	KEYWORD2
+getMaxPayloadSize	KEYWORD2
+setMaxPublishPayloadSize	KEYWORD2
+resetBufferSize	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

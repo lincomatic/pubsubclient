@@ -447,7 +447,7 @@ boolean PubSubClient::publish(const char* topic, const uint8_t* payload, unsigne
 
 boolean PubSubClient::publish(const char* topic, const uint8_t* payload, unsigned int plength, boolean retained) {
     if (connected()) {
-        if (this->bufferSize < MQTT_MAX_HEADER_SIZE + 2+strnlen(topic, this->bufferSize) + plength) {
+        if (this->bufferSize < getPacketOverheadSize(topic) + plength) {
             // Too long
             return false;
         }
@@ -766,4 +766,9 @@ PubSubClient& PubSubClient::setKeepAlive(uint16_t keepAlive) {
 PubSubClient& PubSubClient::setSocketTimeout(uint16_t timeout) {
     this->socketTimeout = timeout;
     return *this;
+}
+
+boolean PubSubClient::setMaxPublishPayloadSize(const char *topic,uint16_t payloadsize)
+{
+  return setBufferSize(payloadsize + getPacketOverheadSize(topic));
 }

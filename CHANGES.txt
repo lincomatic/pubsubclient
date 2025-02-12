@@ -1,3 +1,7 @@
+2.8.1 20250212 SCL
+* add getPacketOverheadSize(), getMaxPayloadSize(), setMaxPayloadSize(), resetBufferSize()
+-> setBufferSize() was impossible to use, because user didn't know how many extra overhead bytes to allocate beyond the payload size. use setMaxPayloadSize() instead. resetBufferSize() can be called to restore original buffersize.
+
 2.8
    * Add setBufferSize() to override MQTT_MAX_PACKET_SIZE
    * Add setKeepAlive() to override MQTT_KEEPALIVE
